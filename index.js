@@ -7,7 +7,7 @@ const fs = require('fs');
 const client = new Client();
 
 // Discord login
-client.login('NTg5Mjg1ODQ3NzQ1MDM2Mjg5.XQRdpQ.eBuU-4b1s8yUYZ5ShbcrvpI0e4s');
+client.login(config.token);
 
 // Discord error handleing
 client.on('error', e => console.error(e));
@@ -15,7 +15,7 @@ client.on('warn', e => console.warn(e));
 client.on('debug', e => console.log(e));
 
 client.on('ready', () => {
-  client.user.setStatus('invisible', 'test')
+  client.user.setActivity('with the counsel', { type: 'PLAYING' });
 });
 
 client.on('message', (message) => {
@@ -77,7 +77,7 @@ client.on('message', (message) => {
   }
   if (command === 'admintools') {
     console.log(message.member)
-    if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('you don\'t have the perms to perform this request')
+    if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('you don\'t have the permissions to perform this request')
     if (message.mentions.users.first() === undefined) return message.channel.send('That is not a member, usages: `d!admintools add/remove [@member]`');
     var mentionedUser = message.mentions.users.first();
     function ensureExists(path, mask, cb) {
@@ -153,7 +153,7 @@ client.on('message', (message) => {
               console.error(err);
             });
           } else {
-            message.channel.send('you don\'t have the perms to perform this request')
+            message.channel.send('you don\'t have the permissions to perform this request')
           }
         })
       });
@@ -264,7 +264,7 @@ client.on('message', (message) => {
             // });
             // // message.channel.send('you tryed to kick but this is a test'), message.delete(1);
           } else {
-            message.channel.send('you don\'t have the perms to perform this request')
+            message.channel.send('you don\'t have the permissions to perform this request')
           }
         })
       });
